@@ -1,0 +1,117 @@
+<div class="container-fluid">
+
+
+<div class="clearfix"></div>
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel5" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel5">{{ action.title }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="form">
+                    <div class="form-group">
+                        <label for="community_id" class="col-form-label">Сообщество:</label>
+                        <select formControlName="community" class="form-control" id="community_id">
+                          <option *ngFor="let g of groups" value="{{ g.pk }}">{{ g.name|substring:48 }}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name" class="col-form-label">Метка:</label>
+                        <input type="text" formControlName="name" class="form-control" id="name">
+                        <span class="errors" 
+                          *ngIf="form.get('name').invalid && form.get('name').touched">
+                          Введите метку
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label for="text" class="col-form-label">Текст:</label>
+                        <textarea formControlName="text" class="form-control" id="text"></textarea>
+                        <span class="errors" 
+                          *ngIf="form.get('text').invalid && form.get('text').touched">
+                          Введите текст
+                        </span>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                <button *ngIf="action.label=='create'" (click)="saveAction()" type="button" class="btn btn-success">Добавить</button>
+                <button *ngIf="action.label=='update'" (click)="saveAction()" type="button" class="btn btn-primary">Сохранить</button>
+                <button *ngIf="action.label=='delete'" (click)="saveAction()" type="button" class="btn btn-danger">Удалить</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card card-shadow mb-4 mt-3">
+  <div class="card-header border-0">
+    <div class="custom-title-wrap bar-primary">
+      <div class="custom-title">
+        Синонимы
+        <button type="button" 
+          class="btn btn-dark float-right" 
+          data-toggle="modal" 
+          data-target="#modal" 
+          data-whatever="@mdo"
+          (click)="createAction()">
+          <span class="fa fa-plus"></span>
+          Добавить
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#ID</th>
+            <th scope="col">Сообщество</th>
+            <th scope="col">Метка</th>
+            <th scope="col">Текст</th>
+            <th scope="col">Действия</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let s of synonyms">
+            <th scope="row">{{ s.pk }}</th>
+            <td>{{ s.community|substring:48 }}</td>
+            <td>{{ s.name }}</td>
+            <td>{{ s.text }}</td>
+            <td>
+                        <button 
+              type="button" 
+              class="btn btn-sm btn-primary"
+              data-toggle="modal" 
+              data-target="#modal" 
+              data-whatever="@mdo"
+              (click)="updateAction(s.pk)">
+              <span class="fa fa-pencil"></span>
+            </button>
+            <button 
+              type="button" 
+              class="btn btn-sm btn-danger" 
+              data-toggle="modal" 
+              data-target="#modal" 
+              data-whatever="@mdo"
+              (click)="deleteAction(s.pk)">
+              <span class="fa fa-remove"></span>
+            </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button *ngIf="prevLink" (click)="getPrev()" type="button" class="btn btn-light"><span class="fa fa-arrow-left"></span> Назад</button>
+      <button *ngIf="nextLink" (click)="getNext()" type="button" class="float-right btn btn-light"> Вперед <span class="fa fa-arrow-right"></span></button>
+
+ 
+    </div>
+  </div>
+ </div>
+
+</div>

@@ -1,0 +1,45 @@
+{% extends 'layout.jinja' %}{% block content %}
+<div class="col-md-6 col-md-offset-3">
+    <h2 class="text-center"><b>ОТКРЫТЬ ПЛОЩАДКУ</b></h2>
+    <h3>Зарегистрировать Личный кабинет</h3>
+    <form method="post" action="?">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <i class="fa fa-envelope-o"></i>
+                </div>
+                <input type="text" name="email" required class="form-control" id="id_email" placeholder="{{ _('Email')}}">
+            </div>
+            {{ form.email.errors }}
+            {{ form.email.help_text}}
+       </div>
+       <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <i class="fa fa-key"></i>
+                </div>
+                <input type="text" name="password1" required class="form-control" id="id_password1" placeholder="{{ _('Password') }}">
+            </div>
+            {{ form.password1.errors }}
+        </div>       <div class="form-group">
+        <div class="input-group">
+                <div class="input-group-addon">
+                    <i class="fa fa-key"></i>
+                </div>
+                <input type="text" name="password2" required class="form-control" id="id_password2" placeholder="{{ _('Repeat password') }}">
+            </div>
+            {{ form.password2.errors }}
+        </div>
+        <div class="input-group">
+            {{ form.terms }}
+            Согласен с политикой конфиденциальности и даю согласие на обработку персональных данных
+        </div>
+        <div class="input-group">
+            <input type="submit" class="btn btn-default" value="Зарегистрироваться" />&nbsp;&nbsp;&nbsp;&nbsp;
+            <a class="dashed" href="{{ url('accounts:login') }}">{{ _('Login') }}</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'layout.jinja' %}
+
+
+{% set user = request.user %}
+
+{% block content %}
+<div id="outer-content" class="container-fluid">
+<div class="row" id="content">
+    {% include "sidebar.jinja" %}
+    <div class="col-md-9">
+        <table class="table table-striped table-condensed table-bordered">
+            <tr><td>ФИО руководителя площадки</td><td>{% if user.last_name %}{{ user.last_name }}{% endif %} {% if user.first_name %}{{ user.first_name }}{% endif %} {% if user.middle_name %}{{ user.middle_name }}{% endif %} </td></tr>
+            <tr><td>Должность</td><td>{% if user.position %}{{ user.position }}{% endif %}</td></tr>
+            <tr><td>Город</td><td>{% if user.city %}{{ user.city }}{% endif %}</td></tr>
+            <tr><td>Контактный телефон</td><td>{% if user.phone %}{{ user.phone }}{% endif %}</td></tr>
+            <tr><td>Электронный адрес</td><td>{% if user.email %}{{ user.email }}{% endif %}</td></tr>
+        </table>
+</div>
+{% endblock %}

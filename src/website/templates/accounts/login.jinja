@@ -1,0 +1,24 @@
+{% extends 'login_layout.jinja' %}
+
+{% block content %}
+<!--login form-->
+<div class="login-form">
+    <h4 class="text-uppercase text-purple text-center mb-5">{{ _('Login') }}</h4>
+    <form action="?" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          <input type="text" name="username" required class="form-control" id="id_username" placeholder="{{ _('Email')}}">
+          {{ form.username.errors }}
+        </div>
+        <div class="form-group mb-4">
+          <input type="password" name="password" required class="form-control" id="id_password" placeholder="{{ _('Password') }}">
+          {{ form.password.errors }}
+        </div>
+
+        <div class="form-group clearfix">
+            <button type="submit" class="btn btn-purple float-right">{{ _('Login') }}</button>
+        </div>
+    </form>
+</div>
+<!--/login form-->
+{% endblock %}

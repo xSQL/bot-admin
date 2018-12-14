@@ -1,0 +1,23 @@
+html, body {
+  height: 100%;
+}
+.fixed-nav {
+  padding-top: 70px;
+}
+.login-bg {
+  height: 100%;
+}
+
+.login-bg .container {
+  margin-top: 0;
+  padding-top: 8%;
+}
+
+.login-form {
+  border-radius: 10px 10px 10px 10px !important;
+  margin: 0 auto;
+}
+
+span.errors {
+  color: #e55;
+}

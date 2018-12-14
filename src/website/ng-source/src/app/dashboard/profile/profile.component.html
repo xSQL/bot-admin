@@ -1,0 +1,68 @@
+<div class="container-fluid">
+<div class="card card-shadow mb-4 mt-3">
+  <div class="card-header border-0">
+    <div class="custom-title-wrap bar-primary">
+      <div class="custom-title">Редактирование профиля</div>
+    </div>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="form" class="col-md-6">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">
+            <span class="fa fa-vcard"></span>
+          </span>
+        </div>
+        <input type="text" formControlName="first_name" placeholder="Имя"
+            class="form-control" id="first_name">
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">
+            <span class="fa fa-vcard"></span>
+          </span>
+        </div>
+          <input type="text" formControlName="middle_name"  placeholder="Отчество"
+            class="form-control" id="middle_name">
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">
+            <span class="fa fa-vcard"></span>
+          </span>
+        </div>
+          <input type="text" formControlName="last_name"  placeholder="Фамилия"
+            class="form-control" id="middle_name">
+      </div>
+       <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">
+            <span class="fa fa-phone"></span>
+          </span>
+        </div>
+        <input type="text" formControlName="phone"  placeholder="Телефон"
+            class="form-control" id="phone">
+      </div>
+       <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">
+            <span class="fa fa-skype"></span>
+          </span>
+        </div>
+        <input type="text" formControlName="skype"  placeholder="Skype"
+            class="form-control" id="skype">
+      </div>
+       <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">
+            <span class="fa fa-telegram"></span>
+          </span>
+        </div>
+        <input type="text" formControlName="telegram" placeholder="Telegram" 
+            class="form-control" id="telegram">
+      </div>
+      <button class="btn btn-success" (click)="saveAction()">Сохранить</button>
+    </form>
+  </div>
+</div>
+</div>

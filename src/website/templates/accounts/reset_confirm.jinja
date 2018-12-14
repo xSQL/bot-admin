@@ -1,0 +1,49 @@
+{% extends 'layout.jinja' %}
+
+{% block title %}{{ title }}{% endblock %}
+{% block content_title %}<h1>{{ title }}</h1>{% endblock %}
+{% block content %}
+    {% if validlink %}
+    <div class="col-md-8 col-md-offset-2">
+        <form action="" method="post">{% csrf_token %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>{{ _('Please enter your new password twice so we can verify you typed it in correctly.') }}</h4>
+                </div>
+                <div class="panel-body">
+                <fieldset class="module aligned wide">
+                    <label for="id_new_password1" class="required">{{ _('New password:') }}</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="fa fa-key"></i>
+                        </div>
+                        <input name="new_password1" required="" id="id_new_password1" type="password" class="form-control">
+                    </div>
+                    {% for error in form.new_password1.errors %}
+                        <p class="help-block error">{{ error }}</p>
+                    {% endfor %}
+                    <label for="id_new_password2" class="required">{{ _('Confirm password:') }}</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="fa fa-key"></i>
+                        </div>
+                        <input name="new_password2" required="" id="id_new_password2" type="password" class="form-control">
+                    </div>
+                    {% for error in form.new_password2.errors %}
+                        <p class="help-block error">{{ error }}</p>
+                    {% endfor %}
+                </fieldset>
+                </div>
+                <div class="panel-footer">
+                <div class="submit-row">
+                    <input type="submit" value="{{ _('Change my password') }}" class="default btn btn-primary" />
+                </div>
+                </div>
+            </div>
+            <script type="text/javascript">document.getElementById("id_old_password").focus();</script>
+        </form>
+    </div>
+    {% else %}
+        <p class="alert alert-danger">{{ _('The password reset link was invalid, possibly because it has already been used. Please request a new password reset.') }}</p>
+    {% endif %}
+{% endblock %}
